@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vedant Nadoda, mechanical engineer: additive manufacturing, mechatronics and manufacturing portfolio.">
+<meta name="author" content="Vedant Nadoda">
+<meta property="og:title" content="Vedant Nadoda | Mechanical Engineer">
+<meta property="og:description" content="Hands-on engineering portfolio: industrial 3D printers, closed-loop mechatronics, metal AM testing.">
+<meta property="og:image" content="https://vedant030301.github.io/img/go3d_printer.jpg">
+<meta property="og:url" content="https://vedant030301.github.io/">
+<link rel="canonical" href="https://vedant030301.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%2316191d%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial%22 font-weight=%22700%22 font-size=%2215%22 fill=%22%23f08a5d%22 text-anchor=%22middle%22%3EVN%3C/text%3E%3C/svg%3E">
+<title>Vedant Nadoda | Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --bg:#fbfbfa; --surface:#f1f2f3; --ink:#16191d; --body:#3d434a; --mute:#6a7179; --faint:#9aa1a8;
+  --rule:#d8dbde; --hair:#e6e8ea; --acc:#c2410c; --acc-soft:#fbeee7; --acc-on-ink:#f08a5d; --inv:#ffffff;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans","Arial Narrow",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111315; --surface:#1a1d21; --ink:#eef0f2; --body:#c3c8cd; --mute:#8d949b; --faint:#646b72;
+    --rule:#30353b; --hair:#24282d; --acc:#f07a42; --acc-soft:#2a1c15; --acc-on-ink:#c2410c; --inv:#111315;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111315; --surface:#1a1d21; --ink:#eef0f2; --body:#c3c8cd; --mute:#8d949b; --faint:#646b72;
+  --rule:#30353b; --hair:#24282d; --acc:#f07a42; --acc-soft:#2a1c15; --acc-on-ink:#c2410c; --inv:#111315;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{color:var(--ink);text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:500}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+b,.b{color:var(--ink);font-weight:600}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--hair)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.mark{font-family:var(--cond);font-weight:700;font-size:19px;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.mark span{color:var(--acc)}
+.nav ul{display:flex;gap:clamp(12px,2.4vw,28px);list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.nav a{text-decoration:none;color:var(--mute)}
+.nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(40px,7vw,88px) clamp(32px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:end}
+.hero h1{font-family:var(--cond);font-weight:700;font-size:clamp(56px,9.5vw,124px);line-height:.9;letter-spacing:-.025em;margin-top:18px}
+.hero .role{font-size:clamp(18px,2vw,21px);color:var(--ink);font-weight:500;margin-top:20px}
+.hero .thesis{font-size:clamp(17px,1.7vw,19px);line-height:1.55;margin-top:14px;max-width:34em}
+.verbs{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:22px;font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.verbs span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--acc);margin-right:8px;vertical-align:2px}
+.mosaic{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:auto auto;gap:8px}
+.mosaic figure{margin:0;position:relative;background:var(--surface);overflow:hidden}
+.mosaic img{width:100%;height:100%;object-fit:cover}
+.mosaic .tall{grid-row:span 2;aspect-ratio:3/4.3}
+.mosaic .a{aspect-ratio:1/1.02}
+.mosaic .b2{aspect-ratio:1.43/1}
+.mosaic figcaption{position:absolute;left:8px;bottom:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;background:var(--bg);color:var(--ink);padding:3px 7px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);margin-bottom:clamp(48px,7vw,88px)}
+.stat{padding:16px 16px 4px 0}
+.stat+.stat{padding-left:18px;border-left:1px solid var(--hair)}
+.stat .n{font-family:var(--cond);font-size:clamp(38px,5vw,56px);font-weight:600;color:var(--ink);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.48em;color:var(--acc);margin-left:3px}
+.stat .l{color:var(--ink);font-weight:500;font-size:15px;margin-top:8px;line-height:1.35}
+.stat .s{color:var(--mute);font-size:13px;margin-top:2px}
+
+/* section heads */
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-top:1px solid var(--rule);padding-top:14px;margin-bottom:24px}
+.sechead h2{font-family:var(--cond);font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-.01em}
+
+/* index */
+.index{list-style:none;margin:0 0 clamp(56px,8vw,96px);padding:0;border-top:2px solid var(--ink)}
+.index a{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--hair);text-decoration:none}
+.index a:hover .t{color:var(--acc)}
+.index .no{font-family:var(--mono);color:var(--acc);font-weight:500;font-size:14px}
+.index .t{font-family:var(--cond);font-size:clamp(20px,2.4vw,26px);font-weight:600;color:var(--ink);line-height:1.2;transition:color .15s}
+.index .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:right}
+
+/* project */
+.project{padding-block:clamp(48px,7vw,88px) 0;border-top:1px solid var(--rule)}
+.phead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:start}
+.pno{font-family:var(--cond);font-weight:700;font-size:clamp(64px,10vw,132px);line-height:.8;color:var(--acc);letter-spacing:-.04em}
+.phead h2{font-family:var(--cond);font-size:clamp(32px,4.4vw,54px);font-weight:600;line-height:1.02;letter-spacing:-.015em;margin-top:10px}
+.lede{font-size:clamp(17px,1.7vw,20px);color:var(--ink);line-height:1.5;margin-top:14px;max-width:40em}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);margin-top:26px}
+.meta div{padding:11px 14px 11px 0}
+.meta div+div{padding-left:14px;border-left:1px solid var(--hair)}
+.meta dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.meta dd{margin:3px 0 0;color:var(--ink);font-weight:500;font-size:14.5px;line-height:1.4}
+.meta dl{margin:0}
+
+.step{display:grid;grid-template-columns:150px minmax(0,1fr);gap:clamp(16px,3vw,40px);padding-block:26px;border-bottom:1px solid var(--hair)}
+.step>h3{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:500;color:var(--ink);line-height:1.5}
+.step>h3 i{font-style:normal;color:var(--acc);display:block;font-size:13px;margin-bottom:2px}
+.step .body{max-width:720px}
+.step .body.wide{max-width:none}
+.pts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pts li{position:relative;padding-left:18px}
+.pts li::before{content:"";position:absolute;left:0;top:.8em;width:9px;height:2px;background:var(--acc)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.sub{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--acc);margin-bottom:4px;font-weight:500}
+
+.figs{display:grid;gap:12px}
+figure.f{margin:0}
+figure.f .ph{background:var(--surface);overflow:hidden;cursor:zoom-in;border:0;padding:0;width:100%;display:block}
+figure.f .ph img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+figure.f .ph:hover img{transform:scale(1.02)}
+figure.f .ph.c{background:#fff;border:1px solid var(--hair)}
+figure.f .ph.c img{object-fit:contain}
+figure.f .ph.k{background:#000}
+figure.f .ph.k img{object-fit:contain}
+figcaption{font-size:13px;line-height:1.45;color:var(--mute);margin-top:7px}
+figcaption b{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;color:var(--acc);margin-right:6px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-top:2px solid var(--ink)}
+.kpi{padding:14px 16px 6px 0}
+.kpi+.kpi{padding-left:16px;border-left:1px solid var(--hair)}
+.kpi .n{font-family:var(--cond);font-size:clamp(36px,4.2vw,48px);font-weight:600;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.kpi .n small{font-size:.5em;color:var(--acc);margin-left:2px}
+.kpi .n.t{font-size:clamp(20px,2vw,23px);line-height:1.2}
+.kpi .l{color:var(--ink);font-weight:500;font-size:14.5px;margin-top:8px;line-height:1.35}
+.kpi .s{color:var(--mute);font-size:13px;margin-top:2px;line-height:1.4}
+
+.take{background:var(--ink);color:var(--inv);padding:22px clamp(18px,3vw,30px);margin-block:30px 0;display:grid;grid-template-columns:150px minmax(0,1fr);gap:clamp(16px,3vw,40px)}
+.take h3{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:500;color:var(--inv)}
+.take h3 i{font-style:normal;color:var(--acc-on-ink);display:block}
+.take p{font-size:17px;line-height:1.55;max-width:46em;opacity:.92}
+
+.callout{border-left:3px solid var(--acc);background:var(--acc-soft);padding:14px 18px;margin-top:14px}
+.callout .sub{margin-bottom:4px}
+.callout p{color:var(--ink)}
+
+.diagram{overflow-x:auto;margin-top:6px}
+.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+svg text{font-family:var(--sans)}
+svg .m{font-family:var(--mono)}
+.d-box{fill:var(--bg);stroke:var(--ink);stroke-width:1.3}
+.d-dark{fill:var(--ink)}
+.d-soft{fill:var(--acc-soft);stroke:var(--acc);stroke-width:1.4}
+.d-accbox{fill:var(--bg);stroke:var(--acc);stroke-width:1.6}
+.d-panel{fill:var(--surface)}
+.d-bar{fill:var(--acc)}
+.t-ink{fill:var(--ink)} .t-inv{fill:var(--inv)} .t-mute{fill:var(--mute)} .t-acc{fill:var(--acc)} .t-body{fill:var(--body)} .t-oi{fill:var(--acc-on-ink)}
+.l-ink{stroke:var(--ink)} .l-acc{stroke:var(--acc)} .l-mute{stroke:var(--faint)}
+.a-ink{fill:var(--ink)} .a-acc{fill:var(--acc)} .a-mute{fill:var(--faint)}
+
+table.res{width:100%;border-collapse:collapse;font-size:15px;border-top:2px solid var(--ink);font-variant-numeric:tabular-nums}
+table.res th{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:400;text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--rule)}
+table.res td{padding:11px 12px 11px 0;border-bottom:1px solid var(--hair);vertical-align:baseline}
+table.res .v{font-family:var(--cond);font-size:26px;font-weight:600;color:var(--ink)}
+.tablewrap{overflow-x:auto}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;border:1px solid var(--rule);padding:3px 9px;color:var(--ink);background:var(--bg)}
+
+/* capability */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(28px,5vw,64px)}
+.xp{border-top:2px solid var(--ink);list-style:none;margin:0;padding:0}
+.xp li{padding:14px 0;border-bottom:1px solid var(--hair)}
+.xp .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.xp .top b{font-size:16px}
+.xp .when{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--mute);white-space:nowrap}
+.xp .org{color:var(--mute);font-size:14px}
+.xp p{font-size:15px;margin-top:4px}
+table.mx{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px;table-layout:fixed}
+table.mx th:not(:first-child){width:46px}
+table.mx th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;color:var(--acc);padding:8px 0;border-bottom:2px solid var(--ink);text-align:center}
+table.mx th:first-child{text-align:left;color:var(--mute);letter-spacing:.12em}
+table.mx th.nyu{color:var(--mute)}
+table.mx td{padding:8px 0;border-bottom:1px solid var(--hair);text-align:center;color:var(--ink)}
+table.mx td:first-child{text-align:left;padding-right:10px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ink)}
+.no-dot{display:inline-block;width:6px;height:1px;background:var(--rule);vertical-align:middle}
+.cad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cad div{background:#fff;border:1px solid var(--hair);aspect-ratio:1.1/1;padding:8px}
+.cad img{width:100%;height:100%;object-fit:contain}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(56px,8vw,96px)}
+.contact .pic{aspect-ratio:4/5;overflow:hidden;background:var(--surface)}
+.contact .pic img{width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.contact h2{font-family:var(--cond);font-size:clamp(44px,6vw,76px);font-weight:700;line-height:.95;letter-spacing:-.02em;margin-top:12px}
+.rows{border-top:2px solid var(--ink);margin-top:28px}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--hair)}
+.row .v{color:var(--ink);font-weight:600;font-size:17px;overflow-wrap:anywhere;user-select:all}
+.row a.v{text-decoration:none;user-select:auto}
+.row a.v:hover{color:var(--acc)}
+.copy{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink);padding:5px 10px;cursor:pointer}
+.copy:hover{border-color:var(--ink)}
+footer{border-top:1px solid var(--rule);padding-block:18px 28px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(94vw,1400px);max-height:92vh}
+dialog.lb::backdrop{background:rgba(10,12,14,.86)}
+dialog.lb img{max-height:82vh;width:auto;max-width:100%;margin:0 auto;background:#fff}
+dialog.lb p{color:#e9ebed;font-size:14px;margin-top:10px;max-width:70ch}
+dialog.lb button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;background:#fff;color:#16191d;border:0;padding:8px 12px;cursor:pointer}
+
+@media (max-width:860px){
+  .hero,.two,.contact{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--hair);margin-top:4px}
+  .step,.take{grid-template-columns:minmax(0,1fr);gap:10px}
+  .index a{grid-template-columns:44px minmax(0,1fr)}
+  .index .k{grid-column:2;text-align:left}
+  .nav ul{display:none}
+  .phead{grid-template-columns:minmax(0,1fr)}
+  .grid-2,.grid-3{grid-template-columns:minmax(0,1fr) !important}
+}
+@media (max-width:520px){
+  .kpi+.kpi{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
+  .meta div+div{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
+  .row{grid-template-columns:1fr auto}
+  .row .label{grid-column:1 / -1}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>html{scroll-behavior:smooth}[id]{scroll-margin-top:70px}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">V<span>.</span>Nadoda</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="Vedant_Nadoda_Engineering_Portfolio.pdf" target="_blank" rel="noopener" style="color:var(--acc)">PDF ↓</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Mechanical Engineer · M.S. NYU · Dec 2026</div>
+      <h1>Vedant<br>Nadoda</h1>
+      <p class="role">Additive manufacturing · Mechatronics · Manufacturing</p>
+      <p class="thesis">I design, build, test and troubleshoot physical systems: industrial large-format 3D printers, closed-loop mechatronic prototypes, and metal-AM test specimens. Two-plus years of hands-on work across metal (DMLS/LPBF, WAAM) and polymer (FDM, SLA) platforms.</p>
+      <div class="verbs"><span>Design</span><span>Build</span><span>Test</span><span>Analyze</span><span>Troubleshoot</span><span>Improve</span></div>
+    </div>
+    <div class="mosaic">
+      <figure class="tall"><img src="img/go3d_printer.jpg" alt="Enclosed large-format FDM 3D printer"><figcaption>P01 · FDM printer</figcaption></figure>
+      <figure class="a"><img src="img/lat_compress.jpg" alt="316L lattice specimen under compression in a universal testing machine"><figcaption>P03 · DMLS lattice</figcaption></figure>
+      <figure class="b2"><img src="img/pump_photo.jpg" alt="Peristaltic pump prototype with LCD and keypad"><figcaption>P02 · Pump</figcaption></figure>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Highlights">
+    <div class="stat"><div class="n">67<small>% ↓</small></div><div class="l">Printer assembly lead time</div><div class="s">3 days → 1 day · GO3D</div></div>
+    <div class="stat"><div class="n">7</div><div class="l">Client installations supported</div><div class="s">Setup through acceptance · GO3D</div></div>
+    <div class="stat"><div class="n">1200<small>mm</small></div><div class="l">Largest FDM build volume built</div><div class="s">Also 500 and 300 mm · GO3D</div></div>
+    <div class="stat"><div class="n">150<small>+</small></div><div class="l">Students supported in materials labs</div><div class="s">SEM, XRD, tensile · NYU</div></div>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="sechead"><h2 id="work-h">Selected work</h2><span class="label">2023 – 2026</span></div>
+    <ol class="index">
+      <li><a href="#p01"><span class="no">P01</span><span class="t">Industrial large-format FDM printers</span><span class="k">Additive mfg · Industry</span></a></li>
+      <li><a href="#p02"><span class="no">P02</span><span class="t">Closed-loop peristaltic pump</span><span class="k">Mechatronics · STM32</span></a></li>
+      <li><a href="#p03"><span class="no">P03</span><span class="t">DMLS 316L stainless-steel lattices</span><span class="k">Metal AM · Testing</span></a></li>
+      <li><a href="#p04"><span class="no">P04</span><span class="t">Hydraulic lathe cross-slide</span><span class="k">Mechanism · Hydraulics</span></a></li>
+      <li><a href="#p05"><span class="no">P05</span><span class="t">Injection mold design</span><span class="k">Plastics · Tooling</span></a></li>
+      <li><a href="#p06"><span class="no">P06</span><span class="t">CNC / VMC machining</span><span class="k">G-code · Metrology</span></a></li>
+      <li><a href="#p07"><span class="no">P07</span><span class="t">CNC plotter and Couette-flow solver</span><span class="k">Prototyping · Simulation</span></a></li>
+    </ol>
+  </section>
+
+  <!-- ================= P01 ================= -->
+  <article class="project" id="p01">
+    <div class="phead">
+      <div class="pno">01</div>
+      <div>
+        <div class="eyebrow">Industry · GO3D Innovation LLP · Gandhinagar, India</div>
+        <h2>Industrial large-format FDM printers: build, calibration and commissioning</h2>
+        <p class="lede">Built, calibrated and commissioned custom FDM printers up to 1200 mm build volume, then carried them through customer installation, operator training and support.</p>
+      </div>
+    </div>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Production Support Engineer (Feb–Dec 2024)<br>Mechanical Engineering Intern (Nov 2023–Feb 2024)</dd></div>
+      <div><dt>Build volumes</dt><dd>300 · 500 · 1200 mm, to client spec</dd></div>
+      <div><dt>Tools</dt><dd>SolidWorks · Cura · GD&amp;T · Lean · Quality inspection</dd></div>
+    </dl>
+
+    <div class="step">
+      <h3><i>01</i>Problem</h3>
+      <div class="body"><p>Clients ordered printers to custom specifications at <b>1200, 500 and 300 mm</b> build volumes. Each machine had to be assembled, calibrated and validated to spec, then installed and supported on site. Assembly took <b>3 days per machine</b>.</p></div>
+    </div>
+    <div class="step">
+      <h3><i>02</i>Approach</h3>
+      <div class="body wide">
+        <p style="max-width:720px">The product lifecycle I supported, from factory floor to customer site:</p>
+        <div class="diagram">
+          <svg viewBox="0 0 900 330" role="img" aria-label="Lifecycle: assemble, calibrate, test and QA in the factory; install, train, support at the customer. SolidWorks design input and root-cause feedback feed the loop; Lean process improvement cut assembly from 3 days to 1 day.">
+            <defs><marker id="m1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="a-ink"/></marker></defs>
+            <text x="0" y="12" class="m t-mute" font-size="11" letter-spacing="1.5">IN THE FACTORY</text>
+            <g><rect x="0" y="22" width="280" height="70" class="d-dark"/><text x="16" y="44" class="m t-oi" font-size="11">01</text><text x="16" y="66" class="t-inv" font-size="17" font-weight="600">Assemble</text><text x="16" y="84" class="t-inv" font-size="12.5" opacity=".75">mechanical build, modifications</text></g>
+            <g><rect x="310" y="22" width="280" height="70" class="d-dark"/><text x="326" y="44" class="m t-oi" font-size="11">02</text><text x="326" y="66" class="t-inv" font-size="17" font-weight="600">Calibrate</text><text x="326" y="84" class="t-inv" font-size="12.5" opacity=".75">hardware–software integration</text></g>
+            <g><rect x="620" y="22" width="280" height="70" class="d-dark"/><text x="636" y="44" class="m t-oi" font-size="11">03</text><text x="636" y="66" class="t-inv" font-size="17" font-weight="600">Test &amp; QA</text><text x="636" y="84" class="t-inv" font-size="12.5" opacity=".75">print-quality validation</text></g>
+            <text x="30" y="132" class="m t-mute" font-size="11" letter-spacing="1.5">AT THE CUSTOMER</text>
+            <g><rect x="0" y="142" width="280" height="70" class="d-box"/><text x="16" y="164" class="m t-acc" font-size="11">04</text><text x="16" y="186" class="t-ink" font-size="17" font-weight="600">Install</text><text x="16" y="204" class="t-mute" font-size="12.5">site setup, final acceptance</text></g>
+            <g><rect x="310" y="142" width="280" height="70" class="d-box"/><text x="326" y="164" class="m t-acc" font-size="11">05</text><text x="326" y="186" class="t-ink" font-size="17" font-weight="600">Train</text><text x="326" y="204" class="t-mute" font-size="12.5">operators, SOPs, maintenance</text></g>
+            <g><rect x="620" y="142" width="280" height="70" class="d-box"/><text x="636" y="164" class="m t-acc" font-size="11">06</text><text x="636" y="186" class="t-ink" font-size="17" font-weight="600">Support</text><text x="636" y="204" class="t-mute" font-size="12.5">+ custom part production</text></g>
+            <g class="l-ink" stroke-width="1.4" fill="none" marker-end="url(#m1)"><line x1="281" y1="57" x2="307" y2="57"/><line x1="591" y1="57" x2="617" y2="57"/><line x1="281" y1="177" x2="307" y2="177"/><line x1="591" y1="177" x2="617" y2="177"/><path d="M760,93 L760,110 L14,110 L14,139"/></g>
+            <rect x="0" y="228" width="440" height="44" class="d-panel"/><rect x="0" y="228" width="3" height="44" class="d-bar"/>
+            <text x="14" y="247" class="t-ink" font-size="13.5" font-weight="600">Design input: SolidWorks</text><text x="14" y="263" class="t-body" font-size="12">components · fixtures · cable management · mounts</text>
+            <rect x="460" y="228" width="440" height="44" class="d-panel"/><rect x="460" y="228" width="3" height="44" class="d-bar"/>
+            <text x="474" y="247" class="t-ink" font-size="13.5" font-weight="600">Feedback: root-cause analysis</text><text x="474" y="263" class="t-body" font-size="12">mechanical and process deviations traced</text>
+            <rect x="0" y="282" width="900" height="46" class="d-soft" stroke="none"/>
+            <text x="14" y="301" class="t-ink" font-size="13.5" font-weight="600">Process improvement: Lean · 5S · Kaizen · standardized workflows</text>
+            <text x="14" y="318" class="t-body" font-size="12">assembly, inventory, machine organization, BOM accuracy</text>
+            <text x="886" y="312" text-anchor="end" class="t-acc" font-size="20" font-weight="700">3 days → 1 day</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>03–05</i>Design, build, test</h3>
+      <div class="body wide">
+        <div class="cols">
+          <div><div class="sub">Design</div><ul class="pts"><li><b>Designed and validated</b> custom machine components, cable-management systems, fixtures and mounting hardware in SolidWorks, applying DFM/DFA and GD&amp;T.</li><li><b>Designed and ran</b> DOE-style test plans across FDM and resin print parameters to find process limits and quantify print accuracy (intern phase).</li></ul></div>
+          <div><div class="sub">Build</div><ul class="pts"><li><b>Built, assembled and commissioned</b> printers hands-on: assembly, disassembly, prototype modifications, calibration and testing.</li><li><b>Supported on-site installations:</b> setup, site requirements, calibration, troubleshooting and final acceptance.</li></ul></div>
+          <div><div class="sub">Test &amp; iterate</div><ul class="pts"><li><b>Calibrated and validated</b> print quality; integrated hardware and software.</li><li><b>Performed root-cause analysis</b> on mechanical and process deviations.</li><li><b>Wrote SOPs</b> and trained customers and operators.</li></ul></div>
+        </div>
+        <div class="figs grid-3" style="grid-template-columns:1fr 1.3fr 1.55fr;margin-top:26px">
+          <figure class="f"><button class="ph" style="aspect-ratio:.97/1"><img src="img/go3d_floor.jpg" alt="Production floor with enclosed printer frames"></button><figcaption><b>FIG 1.2</b>Production floor: enclosed large-format frames mid-assembly beside smaller-format printers.</figcaption></figure>
+          <figure class="f"><button class="ph" style="aspect-ratio:1.33/1"><img src="img/go3d_prints.jpg" alt="White printed sample parts"></button><figcaption><b>FIG 1.3</b>Parts with fine relief, thin walls and tall features: geometry that exposes calibration and process errors.</figcaption></figure>
+          <figure class="f"><button class="ph" style="aspect-ratio:1.56/1"><img src="img/go3d_red_4k.jpg" alt="Batch of red printed components"></button><figcaption><b>FIG 1.4</b>Customer-specific components printed in batch. Repeatability across a run is the quality target.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>06</i>Results</h3>
+      <div class="body wide">
+        <div class="kpis">
+          <div class="kpi"><div class="n">67<small>% ↓</small></div><div class="l">Assembly lead time, 3 days → 1 day</div><div class="s">Standardized Lean workflow, team effort</div></div>
+          <div class="kpi"><div class="n">98<small>%</small></div><div class="l">Dimensional accuracy</div><div class="s">Root-cause and process work contributed</div></div>
+          <div class="kpi"><div class="n">7</div><div class="l">Client installations supported</div><div class="s">Setup through final acceptance</div></div>
+          <div class="kpi"><div class="n">3</div><div class="l">Industry exhibitions</div><div class="s">Live demos and client engagement</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="take"><h3><i>07</i>Takeaway</h3><p>Production-floor engineering: taking a machine from parts to a calibrated, validated product, tracing the root cause when prints go out of spec, and improving the process that builds the machine.</p></div>
+  </article>
+
+  <!-- ================= P02 ================= -->
+  <article class="project" id="p02">
+    <div class="phead">
+      <div class="pno">02</div>
+      <div>
+        <div class="eyebrow">New York University · Jan – May 2026</div>
+        <h2>Closed-loop peristaltic pump with water-level control</h2>
+        <p class="lede">Developed an automated peristaltic pumping system for electronically controlled fluid transfer and water-level regulation.</p>
+      </div>
+    </div>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Control logic, electrical architecture, system integration</dd></div>
+      <div><dt>Hardware</dt><dd>STM32 H5 Nucleo · TMC2209 · stepper · LCD · keypad</dd></div>
+      <div><dt>Fabrication</dt><dd>3D printing · laser cutting</dd></div>
+    </dl>
+    <div class="step">
+      <h3><i>01</i>Problem</h3>
+      <div class="body">
+        <div class="figs grid-2" style="grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start">
+          <p>Hold a target water level without manual pump operation. The system has to <b>sense</b> the level, <b>decide</b> when to pump, <b>drive</b> a peristaltic pump, and let a user <b>monitor and set</b> it, all in one self-contained unit.</p>
+          <figure class="f"><button class="ph" style="aspect-ratio:1.43/1"><img src="img/pump_photo.jpg" alt="Pump prototype"></button><figcaption><b>FIG 2.1</b>Working prototype: stepper-driven pump head, enclosure with LCD and 4×4 keypad, emergency switch, tubing to the reservoir.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>02</i>Approach<br><span style="color:var(--mute)">closed-loop architecture</span></h3>
+      <div class="body wide">
+        <div class="diagram">
+          <svg viewBox="0 0 960 372" role="img" aria-label="Closed loop: water-level sensor to STM32 to TMC2209 driver to stepper motor to peristaltic pump to fluid transfer; the changed water level feeds back to the sensor. Keypad inputs and LCD status connect to the STM32. Power: 24 V supply, emergency switch, DC-DC step-down conversion.">
+            <defs>
+              <marker id="m2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="a-ink"/></marker>
+              <marker id="m2o" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="a-acc"/></marker>
+              <marker id="m2g" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="a-mute"/></marker>
+            </defs>
+            <g class="m t-mute" font-size="10.5" letter-spacing="1.4"><text x="0" y="12">USER</text><text x="150" y="12">SENSE</text><text x="355" y="12">COMPUTE</text><text x="560" y="12">DRIVE</text><text x="765" y="12">ACTUATE</text></g>
+            <line x1="0" y1="20" x2="960" y2="20" class="l-mute" stroke-width=".6"/>
+            <g><rect x="150" y="44" width="185" height="74" class="d-accbox"/><text x="163" y="65" class="m t-acc" font-size="10">① SENSOR</text><text x="163" y="88" class="t-ink" font-size="15" font-weight="600">Water-level sensor</text><text x="163" y="106" class="t-mute" font-size="11.5">measures reservoir level</text></g>
+            <g><rect x="355" y="44" width="185" height="74" class="d-dark"/><text x="368" y="65" class="m t-oi" font-size="10">② MICROCONTROLLER</text><text x="368" y="88" class="t-inv" font-size="15" font-weight="600">STM32 H5 Nucleo</text><text x="368" y="106" class="t-inv" font-size="11.5" opacity=".75">control logic: pump on / off</text></g>
+            <g><rect x="560" y="44" width="185" height="74" class="d-box"/><text x="573" y="65" class="m t-mute" font-size="10">③ MOTOR DRIVER</text><text x="573" y="88" class="t-ink" font-size="15" font-weight="600">TMC2209</text><text x="573" y="106" class="t-mute" font-size="11.5">step / direction to motor</text></g>
+            <g><rect x="765" y="44" width="195" height="74" class="d-box"/><text x="778" y="65" class="m t-mute" font-size="10">④ ACTUATOR</text><text x="778" y="88" class="t-ink" font-size="15" font-weight="600">Stepper motor</text><text x="778" y="106" class="t-mute" font-size="11.5">turns the pump rollers</text></g>
+            <g><rect x="765" y="176" width="195" height="74" class="d-box"/><text x="778" y="197" class="m t-mute" font-size="10">⑤ PUMP</text><text x="778" y="220" class="t-ink" font-size="15" font-weight="600">Peristaltic pump</text><text x="778" y="238" class="t-mute" font-size="11.5">rollers squeeze the tubing</text></g>
+            <g><rect x="560" y="176" width="185" height="74" class="d-box"/><text x="573" y="197" class="m t-mute" font-size="10">⑥ PROCESS</text><text x="573" y="220" class="t-ink" font-size="15" font-weight="600">Fluid transfer</text><text x="573" y="238" class="t-mute" font-size="11.5">through tubing to reservoir</text></g>
+            <g><rect x="355" y="176" width="185" height="74" class="d-soft"/><text x="368" y="197" class="m t-acc" font-size="10">⑦ STATE</text><text x="368" y="220" class="t-ink" font-size="15" font-weight="600">Water level changes</text><text x="368" y="238" class="t-mute" font-size="11.5">sensed again by ①</text></g>
+            <g class="l-ink" stroke-width="1.5" marker-end="url(#m2)"><line x1="336" y1="81" x2="352" y2="81"/><line x1="541" y1="81" x2="557" y2="81"/><line x1="746" y1="81" x2="762" y2="81"/><line x1="862" y1="119" x2="862" y2="173"/><line x1="764" y1="213" x2="748" y2="213"/><line x1="559" y1="213" x2="543" y2="213"/></g>
+            <path d="M354,213 L242,213 L242,122" fill="none" class="l-acc" stroke-width="2.6" marker-end="url(#m2o)"/>
+            <text x="232" y="196" text-anchor="end" class="t-acc" font-size="13.5" font-weight="600">water-level feedback</text>
+            <text x="232" y="212" text-anchor="end" class="m t-acc" font-size="9.5" letter-spacing="1">CLOSES THE LOOP</text>
+            <rect x="0" y="44" width="118" height="32" class="d-panel"/><text x="12" y="65" class="t-ink" font-size="12.5" font-weight="500">Keypad</text><text x="106" y="65" text-anchor="end" class="m t-mute" font-size="9.5">IN</text>
+            <rect x="0" y="86" width="118" height="32" class="d-panel"/><text x="12" y="107" class="t-ink" font-size="12.5" font-weight="500">LCD display</text><text x="106" y="107" text-anchor="end" class="m t-mute" font-size="9.5">OUT</text>
+            <path d="M118,60 L132,60 L132,30 L447,30 L447,41" fill="none" class="l-mute" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#m2g)"/>
+            <path d="M447,119 L447,146 L132,146 L132,102 L121,102" fill="none" class="l-mute" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#m2g)"/>
+            <text x="457" y="142" class="t-mute" font-size="10.5">user inputs in · system status out</text>
+            <text x="0" y="307" class="m t-mute" font-size="10.5" letter-spacing="1.4">POWER &amp; SAFETY</text>
+            <rect x="0" y="316" width="960" height="52" class="d-panel"/>
+            <g font-size="13.5"><text x="16" y="347" class="t-ink" font-weight="600">24 V DC supply</text><text x="152" y="347" class="t-acc">→</text><text x="178" y="347" class="t-ink" font-weight="600">Emergency switch</text><text x="326" y="347" class="t-acc">→</text><text x="352" y="347" class="t-ink" font-weight="600">DC-DC step-down conversion</text><text x="578" y="347" class="t-acc">→</text><text x="604" y="347" class="t-body">separate voltages for motor, display, control</text></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>03</i>Design</h3>
+      <div class="body wide"><div class="cols">
+        <div><div class="sub">Control</div><p>Implemented closed-loop logic on the STM32: water-level feedback decides when the pump actuates.</p></div>
+        <div><div class="sub">Actuation</div><p>Drove a stepper-powered peristaltic pump through a TMC2209 driver. In a peristaltic pump only the tubing touches the fluid.</p></div>
+        <div><div class="sub">Power &amp; safety</div><p>Designed the electrical architecture around a 24 V supply with DC-DC conversion for each subsystem’s voltage; added an emergency switch.</p></div>
+        <div><div class="sub">Interface</div><p>Integrated an LCD for system status and a keypad for user input.</p></div>
+      </div></div>
+    </div>
+    <div class="step">
+      <h3><i>04</i>Build</h3>
+      <div class="body wide">
+        <div class="figs grid-2" style="grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:start">
+          <figure class="f"><button class="ph c" style="aspect-ratio:1.42/1"><img src="img/pump_wiring.png" alt="Wiring diagram"></button><figcaption><b>FIG 2.2</b>Wiring map from supply to actuator: 24 V input, E-switch, DC step-down module, TMC2209 driver, stepper, LCD and 4×4 keypad, pinned to the STM32 H5 Morpho connectors (CN7 / CN10).</figcaption></figure>
+          <ul class="pts"><li><b>Integrated</b> tubing, pump mechanism, level sensor, electronics and fluid reservoirs into a single physical prototype.</li><li><b>Fabricated</b> structural components with 3D printing and laser cutting.</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>05</i>Testing &amp; iteration</h3>
+      <div class="body">
+        <p>Verified end-to-end operation: level feedback triggered pump actuation automatically, and the LCD and keypad interface worked as intended.</p>
+        <div class="callout"><div class="sub">Limitation found → next iteration</div><p>The water-level sensor showed <b>corrosion and reliability issues</b> in use. A version 2 should prioritize level sensing suited to long-term water exposure, the weakest link in the loop.</p></div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>06</i>Results</h3>
+      <div class="body wide"><div class="kpis">
+        <div class="kpi"><div class="n t">Closed-loop regulation</div><div class="s">Water level held automatically through pump actuation</div></div>
+        <div class="kpi"><div class="n t">Autonomous transfer</div><div class="s">Driven by real-time level feedback, no manual pumping</div></div>
+        <div class="kpi"><div class="n t">Working interface</div><div class="s">LCD status display and keypad input demonstrated</div></div>
+        <div class="kpi"><div class="n t">Integrated prototype</div><div class="s">Mechanical, electrical, sensing, code and UI in one unit</div></div>
+      </div></div>
+    </div>
+    <div class="take"><h3><i>07</i>Takeaway</h3><p>Mechatronic system integration: sensor, microcontroller, motor driver, power electronics and mechanical hardware working as one closed loop, plus the judgment to find the least reliable component and target it next.</p></div>
+  </article>
+
+  <!-- ================= P03 ================= -->
+  <article class="project" id="p03">
+    <div class="phead">
+      <div class="pno">03</div>
+      <div>
+        <div class="eyebrow">New York University · Sep – Dec 2025</div>
+        <h2>DMLS-printed 316L stainless-steel lattices: tension and compression</h2>
+        <p class="lede">Designed, printed and tested 316L lattice structures to characterize stiffness, strength and failure behavior for lightweight, energy-absorbing applications.</p>
+      </div>
+    </div>
+    <dl class="meta">
+      <div><dt>Process</dt><dd>DMLS metal powder-bed fusion</dd></div>
+      <div><dt>Testing</dt><dd>Instron UTM · tension and compression</dd></div>
+      <div><dt>Analysis</dt><dd>Force–displacement → engineering stress–strain</dd></div>
+    </dl>
+    <div class="figs" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:28px;align-items:end">
+      <figure class="f"><button class="ph c" style="aspect-ratio:1.08/1"><img src="img/lat_orient.png" alt="Build orientation in slicer"></button><figcaption><b>A</b>Build orientation with supports, set before printing.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.57/1"><img src="img/lat_tensile_spec.jpg" alt="Tensile specimen"></button><figcaption><b>B</b>Printed tensile specimen.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.7/1"><img src="img/lat_tensile_test.jpg" alt="Tensile test"></button><figcaption><b>C</b>Tensile test in progress.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.75/1"><img src="img/lat_compress.jpg" alt="Compression test"></button><figcaption><b>D</b>Compression between UTM platens.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.75/1"><img src="img/lat_deformed.jpg" alt="Deformed lattice"></button><figcaption><b>E</b>Deformed lattice. The failure mode is part of the result.</figcaption></figure>
+    </div>
+    <div class="step">
+      <h3><i>01</i>Problem</h3>
+      <div class="body"><p>Metal AM lattices can make light, energy-absorbing structures, but their stiffness and strength depend on geometry and print quality. Goal: measure <b>stiffness, yield and ultimate strength</b> in tension and compression, and identify <b>how the lattices fail</b>.</p></div>
+    </div>
+    <div class="step">
+      <h3><i>02</i>Approach</h3>
+      <div class="body wide"><div class="diagram">
+        <svg viewBox="0 0 900 96" role="img" aria-label="Test workflow: build setup, DMLS print, Instron testing with 5 samples per load case, stress-strain reduction, failure-mode interpretation.">
+          <defs><marker id="m3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="a-ink"/></marker></defs>
+          <g><rect x="0" y="6" width="160" height="84" class="d-dark"/><text x="12" y="28" class="m t-oi" font-size="10">01 PREP</text><text x="12" y="52" class="t-inv" font-size="15" font-weight="600">Build setup</text><text x="12" y="72" class="t-inv" font-size="11.5" opacity=".75">orientation, scan, supports</text></g>
+          <g><rect x="185" y="6" width="160" height="84" class="d-box"/><text x="197" y="28" class="m t-acc" font-size="10">02 PRINT</text><text x="197" y="52" class="t-ink" font-size="15" font-weight="600">DMLS · 316L</text><text x="197" y="72" class="t-mute" font-size="11.5">tensile + compression</text></g>
+          <g><rect x="370" y="6" width="160" height="84" class="d-box"/><text x="382" y="28" class="m t-acc" font-size="10">03 TEST</text><text x="382" y="52" class="t-ink" font-size="15" font-weight="600">Instron UTM</text><text x="382" y="72" class="t-mute" font-size="11.5">5 samples per load case</text></g>
+          <g><rect x="555" y="6" width="160" height="84" class="d-box"/><text x="567" y="28" class="m t-acc" font-size="10">04 REDUCE</text><text x="567" y="52" class="t-ink" font-size="15" font-weight="600">Stress–strain</text><text x="567" y="72" class="t-mute" font-size="11.5">from force–displacement</text></g>
+          <g><rect x="740" y="6" width="160" height="84" class="d-soft"/><text x="752" y="28" class="m t-acc" font-size="10">05 INTERPRET</text><text x="752" y="52" class="t-ink" font-size="15" font-weight="600">Failure modes</text><text x="752" y="72" class="t-mute" font-size="11.5">tearing vs. buckling</text></g>
+          <g class="l-ink" stroke-width="1.4" marker-end="url(#m3)"><line x1="161" y1="48" x2="182" y2="48"/><line x1="346" y1="48" x2="367" y2="48"/><line x1="531" y1="48" x2="552" y2="48"/><line x1="716" y1="48" x2="737" y2="48"/></g>
+        </svg>
+      </div></div>
+    </div>
+    <div class="step">
+      <h3><i>03</i>Design decisions</h3>
+      <div class="body">
+        <div class="tablewrap"><table class="res">
+          <tbody>
+            <tr><td class="label" style="width:150px">Orientation</td><td><b>45° (+X) and 15° (+Z)</b></td></tr>
+            <tr><td class="label">Scan</td><td>Strategic scan patterns</td></tr>
+            <tr><td class="label">Supports</td><td>Stabilized support structures</td></tr>
+            <tr><td class="label">Material</td><td>SS316L powder, DMLS</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>05</i>Testing</h3>
+      <div class="body wide">
+        <ul class="pts" style="max-width:720px"><li><b>Tested</b> 5 tensile and 5 compression specimens on an Instron UTM.</li><li><b>Converted</b> raw force–displacement data into engineering stress–strain curves to compare samples.</li><li><b>Characterized</b> failure: <b>strut tearing</b> in tension, <b>progressive buckling</b> in compression.</li></ul>
+        <div class="figs grid-2" style="grid-template-columns:1fr 1fr;gap:20px;margin-top:22px">
+          <figure class="f"><button class="ph c" style="aspect-ratio:1.65/1"><img src="img/lat_chart_ten.png" alt="Tensile stress-strain curves"></button><figcaption><b>FIG 3.1</b>Tension, 5 samples: tight clustering to peak, then strut tearing drives the drop.</figcaption></figure>
+          <figure class="f"><button class="ph c" style="aspect-ratio:1.6/1"><img src="img/lat_chart_comp.png" alt="Compressive stress-strain curves"></button><figcaption><b>FIG 3.2</b>Compression, 5 samples: stress plateaus instead of dropping. Progressive buckling, non-brittle.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>06</i>Results</h3>
+      <div class="body wide">
+        <div class="tablewrap"><table class="res">
+          <thead><tr><th>Load case</th><th>Strength</th><th>Modulus</th><th>Failure mode</th></tr></thead>
+          <tbody>
+            <tr><td><b>Tension</b></td><td><span class="v">21–23</span> MPa UTS</td><td><span class="v">2.4–2.5</span> GPa</td><td>Strut tearing</td></tr>
+            <tr><td><b>Compression</b></td><td><span class="v">22–23</span> MPa</td><td><span class="v">0.44–1.50</span> GPa</td><td>Progressive buckling</td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin-top:12px;max-width:720px">Tensile properties were stable and repeatable, and compressive strength stayed steady even as compressive modulus varied with lattice buckling. The result is a <b>controlled, non-brittle failure profile</b> suited to energy absorption.</p>
+      </div>
+    </div>
+    <div class="take"><h3><i>07</i>Takeaway</h3><p>The metal-AM qualification loop at small scale: build-process decisions, standardized mechanical testing, data reduction and failure-mode interpretation, the same workflow used to decide whether an AM part is fit for service.</p></div>
+  </article>
+
+  <!-- ================= P04 ================= -->
+  <article class="project" id="p04">
+    <div class="phead">
+      <div class="pno">04</div>
+      <div>
+        <div class="eyebrow">Indus University · B.Tech · 2023</div>
+        <h2>Hydraulic cross-slide retrofit for a conventional lathe</h2>
+        <p class="lede">Designed and prototyped a semi-automated hydraulic cross-slide to replace a manual lathe mechanism, as a low-cost alternative to CNC retrofitting.</p>
+      </div>
+    </div>
+    <dl class="meta">
+      <div><dt>System</dt><dd>Hydraulic cylinder · power pack · custom mounting plate</dd></div>
+      <div><dt>Control</dt><dd>PLC-based</dd></div>
+      <div><dt>Tested on</dt><dd>Facing · taper turning · grooving</dd></div>
+    </dl>
+    <div class="figs grid-2" style="grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;margin-top:28px;align-items:start">
+      <figure class="f"><button class="ph c" style="aspect-ratio:3/1;padding:8px"><img src="img/hyd_drawing.png" alt="Cylinder drawing"></button><figcaption><b>FIG 4.1</b>Cylinder end view and section A–A: 300 ± 2 mm stroke, 480 ± 2 mm overall length, port locations defined.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:1.98/1"><img src="img/hyd_install.jpg" alt="Cylinder installed on lathe"></button><figcaption><b>FIG 4.2</b>Cylinder installed on the lathe, driving the cross-slide.</figcaption></figure>
+    </div>
+    <div class="step">
+      <h3><i>01–02</i>Problem &amp; approach</h3>
+      <div class="body"><p>Manual cross-feed demands constant operator effort and adds vibration and inconsistency to the cut. The retrofit replaces the handwheel-driven cross-slide with a <b>hydraulic cylinder and power pack</b>, mounted through a <b>custom plate</b>, with PLC-based control.</p></div>
+    </div>
+    <div class="step">
+      <h3><i>03–05</i>Design, build, test</h3>
+      <div class="body wide">
+        <ul class="pts" style="max-width:720px"><li><b>Designed and integrated</b> the hydraulic cylinder, power pack and custom mounting plate, applying hydraulic principles.</li><li><b>Tested</b> facing, taper turning and grooving operations on the prototype.</li></ul>
+        <div class="figs" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:20px;align-items:end">
+          <figure class="f"><button class="ph" style="aspect-ratio:.76/1"><img src="img/hyd_1.jpg" alt="Hydraulic cylinder on lathe"></button><figcaption><b>FIG 4.3</b>Hydraulic cylinder mounted on the lathe.</figcaption></figure>
+          <figure class="f"><button class="ph" style="aspect-ratio:.96/1"><img src="img/hyd_plate.jpg" alt="Mounting plate"></button><figcaption><b>FIG 4.4</b>Custom mounting plate installed on the lathe.</figcaption></figure>
+          <figure class="f"><button class="ph" style="aspect-ratio:.79/1"><img src="img/hyd_bush.jpg" alt="Cylindrical component"></button><figcaption><b>FIG 4.5</b>Fabricated cylindrical component.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <h3><i>06</i>Results</h3>
+      <div class="body wide"><div class="kpis">
+        <div class="kpi"><div class="n">~70<small>%</small></div><div class="l">Prototype success on trial operations</div></div>
+        <div class="kpi"><div class="n t">Smoother feed</div><div class="s">Smoother cross-feed motion, improved surface finish</div></div>
+        <div class="kpi"><div class="n t">Less vibration</div><div class="s">Reduced vibration and operator fatigue</div></div>
+        <div class="kpi"><div class="n t">Low-cost path</div><div class="s">Alternative to full CNC retrofitting</div></div>
+      </div></div>
+    </div>
+    <div class="take"><h3><i>07</i>Takeaway</h3><p>Retrofitting a real machine: integrating fluid power, a custom mount and control onto existing equipment, then validating on actual cutting operations.</p></div>
+  </article>
+
+  <!-- ================= P05 ================= -->
+  <article class="project" id="p05">
+    <div class="phead">
+      <div class="pno">05</div>
+      <div>
+        <div class="eyebrow">IACE Gandhinagar · Advance Certification · 2023 – 24</div>
+        <h2>Injection mold design for a curtain ring</h2>
+        <p class="lede">Designed a complete injection mold in SolidWorks and gained hands-on experience on an industrial injection molding machine.</p>
+      </div>
+    </div>
+    <dl class="meta">
+      <div><dt>Tools</dt><dd>SolidWorks · FANUC Roboshot α-S100iA</dd></div>
+      <div><dt>Credential</dt><dd>Machining Technology &amp; Plastic Engineering, graded Competent (Jun 2024)</dd></div>
+    </dl>
+    <div class="figs grid-2" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;margin-top:28px;align-items:start">
+      <figure class="f"><button class="ph c" style="aspect-ratio:1/1"><img src="img/mold_exploded.png" alt="Exploded mold assembly"></button><figcaption><b>FIG 5.1</b>Exploded mold assembly: plate stack, core and cavity inserts, guide elements and fasteners designed as one system.</figcaption></figure>
+      <div style="display:grid;gap:20px">
+        <div><div class="sub">Objective</div><p>Design a production-style mold with every functional element a real tool needs, not only the part cavity.</p></div>
+        <div><div class="sub">Mold anatomy designed</div><div class="chips"><span class="chip">Core &amp; cavity</span><span class="chip">Venting</span><span class="chip">Ejection system</span><span class="chip">Cooling channels</span><span class="chip">Guide pillars</span><span class="chip">Bushes</span><span class="chip">Fixtures</span><span class="chip">Fasteners</span></div></div>
+        <div class="figs" style="grid-template-columns:1fr 1fr">
+          <figure class="f"><button class="ph c" style="aspect-ratio:1/1"><img src="img/mold_cavity.png" alt="Eight-cavity layout"></button><figcaption><b>FIG 5.2</b>Eight-cavity layout fed by a radial runner.</figcaption></figure>
+          <figure class="f"><button class="ph" style="aspect-ratio:1/1"><img src="img/mold_rings.jpg" alt="Curtain rings"></button><figcaption><b>FIG 5.3</b>Curtain rings, the part the mold is designed to produce.</figcaption></figure>
+        </div>
+        <div><div class="sub">Hands-on</div><p>Gained hands-on experience on the FANUC Roboshot α-S100iA and hopper-dryer systems; studied plastic materials, part design, mold anatomy and mold-flow analysis.</p></div>
+      </div>
+    </div>
+    <div class="take"><h3><i>07</i>Takeaway</h3><p>Designing tooling forces DFM thinking: feeding, cooling and ejecting the part matter as much as its shape.</p></div>
+  </article>
+
+  <!-- ================= P06 ================= -->
+  <article class="project" id="p06">
+    <div class="phead">
+      <div class="pno">06</div>
+      <div>
+        <div class="eyebrow">IACE Gandhinagar · Advance Certification · 2023 – 24</div>
+        <h2>CNC / VMC machining, from drawing to part</h2>
+        <p class="lede">Designed parts, defined toolpaths, hand-programmed G-code and machined plastic, aluminum and copper-alloy components on FANUC-controlled CNC and VMC machines.</p>
+      </div>
+    </div>
+    <div class="diagram" style="margin-top:28px">
+      <svg viewBox="0 0 900 60" role="img" aria-label="Workflow: part drawing, toolpaths and work-holding, manual G-code, FANUC CNC or VMC machining, inspection with calipers and micrometers.">
+        <defs><marker id="m6" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="a-ink"/></marker></defs>
+        <g><rect x="0" y="4" width="160" height="52" class="d-dark"/><text x="11" y="23" class="m t-oi" font-size="10">01 DESIGN</text><text x="11" y="44" class="t-inv" font-size="13.5" font-weight="600">Part drawing</text></g>
+        <g><rect x="185" y="4" width="160" height="52" class="d-box"/><text x="196" y="23" class="m t-acc" font-size="10">02 PLAN</text><text x="196" y="44" class="t-ink" font-size="13.5" font-weight="600">Toolpaths, work-holding</text></g>
+        <g><rect x="370" y="4" width="160" height="52" class="d-box"/><text x="381" y="23" class="m t-acc" font-size="10">03 PROGRAM</text><text x="381" y="44" class="t-ink" font-size="13.5" font-weight="600">Manual G-code</text></g>
+        <g><rect x="555" y="4" width="160" height="52" class="d-box"/><text x="566" y="23" class="m t-acc" font-size="10">04 MACHINE</text><text x="566" y="44" class="t-ink" font-size="13.5" font-weight="600">FANUC CNC / VMC</text></g>
+        <g><rect x="740" y="4" width="160" height="52" class="d-soft"/><text x="751" y="23" class="m t-acc" font-size="10">05 INSPECT</text><text x="751" y="44" class="t-ink" font-size="13.5" font-weight="600">Calipers, micrometers</text></g>
+        <g class="l-ink" stroke-width="1.4" marker-end="url(#m6)"><line x1="161" y1="30" x2="182" y2="30"/><line x1="346" y1="30" x2="367" y2="30"/><line x1="531" y1="30" x2="552" y2="30"/><line x1="716" y1="30" x2="737" y2="30"/></g>
+      </svg>
+    </div>
+    <div class="figs grid-3" style="grid-template-columns:minmax(0,.95fr) minmax(0,1.33fr) minmax(0,1.1fr);gap:22px;margin-top:26px;align-items:start">
+      <figure class="f"><button class="ph c" style="aspect-ratio:.95/1;padding:6px"><img src="img/cnc_drawing.png" alt="Dimensioned part drawing"></button><figcaption><b>FIG 6.1</b>Dimensioned drawing with numbered profile points, the reference for toolpath coordinates.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:1.33/1"><img src="img/cnc_part.jpg" alt="Machined part"></button><figcaption><b>FIG 6.2</b>Machined part from that drawing: concave-arc profile, stepped pockets and a raised triangular feature.</figcaption></figure>
+      <ul class="pts"><li><b>Programmed</b> G-code by hand: linear and circular interpolation, canned cycles.</li><li><b>Applied</b> cutting parameters, machining process sequence and work-holding principles.</li><li><b>Machined</b> components from raw plastic, aluminum and copper-alloy stock, producing 3 validation samples per operation.</li><li><b>Inspected</b> parts with vernier calipers, micrometers and dial indicators; trained in GD&amp;T.</li></ul>
+    </div>
+    <div class="figs" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:20px;align-items:end">
+      <figure class="f"><button class="ph" style="aspect-ratio:.88/1"><img src="img/cnc_stock.jpg" alt="Raw stock"></button><figcaption><b>FIG 6.3</b>Raw stock.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.75/1"><img src="img/cnc_chess.jpg" alt="Turned chess pieces"></button><figcaption><b>FIG 6.4</b>Turned profile parts.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.6/1"><img src="img/cnc_pawn.jpg" alt="Turned pawn"></button><figcaption><b>FIG 6.5</b>Turned profile part.</figcaption></figure>
+      <figure class="f"><button class="ph" style="aspect-ratio:.56/1"><img src="img/cnc_turned.jpg" alt="Multi-diameter turned part"></button><figcaption><b>FIG 6.6</b>Multi-diameter turned part.</figcaption></figure>
+    </div>
+    <div class="take"><h3><i>07</i>Takeaway</h3><p>Knowing how a part is actually cut, including toolpaths, fixturing and tolerances, makes every design I draw easier and cheaper to manufacture.</p></div>
+  </article>
+
+  <!-- ================= P07 ================= -->
+  <article class="project" id="p07">
+    <div class="phead">
+      <div class="pno">07</div>
+      <div>
+        <div class="eyebrow">Rapid build &amp; simulation</div>
+        <h2>A 12-hour CNC plotter and a thermal-fluid solver</h2>
+      </div>
+    </div>
+    <div class="figs grid-2" style="grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,48px);margin-top:28px;align-items:start">
+      <div style="display:grid;gap:16px">
+        <div><div class="eyebrow">P07A · NYU Makerspace · 2025</div><h3 style="font-family:var(--cond);font-size:28px;font-weight:600;margin-top:6px">Mini CNC plotter</h3><p style="margin-top:6px">Designed and assembled a functional CNC plotter from scrap materials in under 12 hours, using Arduino control, servo motors and a 3D-printed structure.</p></div>
+        <div class="figs" style="grid-template-columns:1.33fr .56fr">
+          <figure class="f"><button class="ph" style="aspect-ratio:1.33/1"><img src="img/plot_1.jpg" alt="CNC plotter"></button><figcaption><b>FIG 7.1</b>Servo-driven axes on a 3D-printed rack structure.</figcaption></figure>
+          <figure class="f"><button class="ph" style="aspect-ratio:.56/1"><img src="img/plot_2.jpg" alt="Arduino control"></button><figcaption><b>FIG 7.2</b>Arduino control.</figcaption></figure>
+        </div>
+        <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <div class="kpi"><div class="n">1<small>st</small></div><div class="l">Place, Scrapathon</div></div>
+          <div class="kpi"><div class="n">&lt;12<small>h</small></div><div class="l">Concept to machine</div></div>
+          <div class="kpi"><div class="n">$200</div><div class="l">Project grant</div></div>
+        </div>
+      </div>
+      <div style="display:grid;gap:16px">
+        <div><div class="eyebrow">P07B · New York University · Sep – Dec 2025</div><h3 style="font-family:var(--cond);font-size:28px;font-weight:600;margin-top:6px">Couette-flow thermal-fluid solver</h3><p style="margin-top:6px">Developed a Python finite-difference solver for coupled Navier–Stokes and energy equations, from incompressible to supersonic regimes. Verified accuracy with grid-independence and time-step sensitivity studies.</p></div>
+        <figure class="f"><button class="ph k" style="aspect-ratio:2.08/1"><img src="img/cou_pair.png" alt="Velocity and temperature profiles"></button><figcaption><b>FIG 7.3</b>Transient velocity (left) and temperature (right) profiles as the flow develops.</figcaption></figure>
+        <div class="figs" style="grid-template-columns:1fr 1fr">
+          <figure class="f"><button class="ph k" style="aspect-ratio:1.32/1"><img src="img/cou_vel2.png" alt="High-speed velocity profile"></button></figure>
+          <figure class="f"><button class="ph k" style="aspect-ratio:1.28/1"><img src="img/cou_temp2.png" alt="High-speed temperature profile"></button></figure>
+        </div>
+        <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <div class="kpi"><div class="n t">521.316 °R</div><div class="s">Adiabatic wall temperature at Ma ≈ 3.0</div></div>
+          <div class="kpi"><div class="n t">1.30 × 10⁻⁴</div><div class="s">Skin-friction coefficient C<sub>f</sub></div></div>
+          <div class="kpi"><div class="n t">−3.74</div><div class="s">Viscous heat flux, BTU/s·ft²</div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ================= CAPABILITIES ================= -->
+  <section class="project" id="capabilities" aria-labelledby="cap-h">
+    <div class="sechead" style="border-top:0;padding-top:0"><h2 id="cap-h">Experience &amp; capabilities</h2></div>
+    <div class="two">
+      <div>
+        <ul class="xp">
+          <li><div class="top"><b>Research Assistant, Computational Materials</b><span class="when">JUN 2026 – NOW</span></div><div class="org">New York University</div><p>Molecular-dynamics simulation of melting in Au, Al and Cu (LAMMPS / MedeA), validated against experimental data. Built automated HPC workflows; mentor 2 undergraduate researchers.</p></li>
+          <li><div class="top"><b>Course Assistant, Materials Science Lab</b><span class="when">SEP 2025 – NOW</span></div><div class="org">New York University</div><p>Lab procedures and training for 150+ students (30+ per session) across XRD, SEM, tensile, hardness, metallography, heat treatment and laser cutting. NYU Lab Safety Certified.</p></li>
+          <li><div class="top"><b>Production Support Engineer</b><span class="when">FEB – DEC 2024</span></div><div class="org">GO3D Innovation LLP, India · <a href="#p01">P01</a></div></li>
+          <li><div class="top"><b>Mechanical Engineering Intern</b><span class="when">NOV 2023 – FEB 2024</span></div><div class="org">GO3D Innovation LLP · DOE-style print testing, 3 exhibitions, 5S / Kaizen</div></li>
+          <li><div class="top"><b>Advance Certification Trainee</b><span class="when">2023 – 2024</span></div><div class="org">IACE Gandhinagar · <a href="#p05">P05</a>–<a href="#p06">P06</a></div></li>
+          <li><div class="top"><b>Mechanical Engineering Intern, Quality</b><span class="when">JUN – JUL 2021</span></div><div class="org">Sunshine Enterprise, Ahmedabad</div><p>Quality inspections and dimensional verification with calipers, micrometers and gauges against ISO and customer requirements.</p></li>
+        </ul>
+        <div style="margin-top:26px"><div class="sub">Education</div>
+          <p><b>M.S. Mechanical Engineering</b>, New York University · Jan 2025 – Dec 2026</p>
+          <p><b>B.Tech Mechanical Engineering</b>, Indus University, India · 2020 – 2023</p>
+        </div>
+        <div style="margin-top:22px"><div class="sub">Software &amp; platforms</div>
+          <div class="chips"><span class="chip">SolidWorks</span><span class="chip">Creo</span><span class="chip">AutoCAD</span><span class="chip">CAD/CAM</span><span class="chip">Materialise Magics</span><span class="chip">Cura</span><span class="chip">Python</span><span class="chip">LAMMPS / MedeA</span><span class="chip">Peel 3D scanner</span><span class="chip">LPBF / DMLS</span><span class="chip">WAAM</span><span class="chip">FDM</span><span class="chip">SLA</span></div>
+        </div>
+        <div style="margin-top:22px"><div class="sub">SolidWorks part modeling (IACE)</div>
+          <div class="cad"><div><img src="img/cad_1.png" alt="SolidWorks model 1"></div><div><img src="img/cad_2.png" alt="SolidWorks model 2"></div><div><img src="img/cad_3.png" alt="SolidWorks model 3"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sub">Capabilities mapped to evidence</div>
+        <div class="tablewrap"><table class="mx" id="matrix"></table></div>
+        <p style="font-size:13px;color:var(--mute);margin-top:8px"><span class="dot" style="width:8px;height:8px"></span> applied in that project · NYU = research and course assistant roles</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="pic"><img src="img/go3d_red_4k.jpg" alt="Batch of red 3D-printed components"></div>
+    <div>
+      <div class="eyebrow">Open to full-time roles from December 2026</div>
+      <h2 id="contact-h">Let’s build<br>something.</h2>
+      <p style="margin-top:14px;max-width:34em">Mechanical, additive manufacturing, manufacturing and applications engineering, product development, R&amp;D and prototyping, mechatronics.</p>
+      <div class="rows">
+        <div class="row"><span class="label">Email</span><span class="v" id="email">vedant.nadoda@gmail.com</span><button class="copy" data-copy="email">Copy</button></div>
+        <div class="row"><span class="label">Phone</span><span class="v" id="phone">+1 (551) 342-3988</span><button class="copy" data-copy="phone">Copy</button></div>
+        <div class="row"><span class="label">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/vedant-nadoda/" target="_blank" rel="noopener">linkedin.com/in/vedant-nadoda ↗</a><span></span></div>
+        <div class="row"><span class="label">Portfolio</span><a class="v" href="Vedant_Nadoda_Engineering_Portfolio.pdf" target="_blank" rel="noopener">Download PDF (14 pages) ↓</a><span></span></div>
+        <div class="row"><span class="label">GitHub</span><a class="v" href="https://github.com/Vedant030301" target="_blank" rel="noopener">github.com/Vedant030301 ↗</a><span></span></div>
+        <div class="row"><span class="label">Location</span><span class="v" style="user-select:text">New York City Metro Area</span><span></span></div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+<div class="wrap"><footer><span>Vedant Nadoda · Mechanical Engineer · vedant030301.github.io</span><span>Portfolio 2023 – 2026</span></footer></div>
+
+<dialog class="lb" id="lb" aria-label="Enlarged image"><button type="button" id="lbx">Close ✕</button><img id="lbimg" alt=""><p id="lbcap"></p></dialog>
+
+<script>
+(function(){
+  const cols=["P01","P02","P03","P04","P05","P06","P07","NYU"];
+  const rows=[
+   ["Mechanical design & CAD (SolidWorks)",[1,0,1,1,1,1,1,0]],
+   ["Engineering drawings & GD&T",[1,0,0,1,0,1,0,0]],
+   ["DFM / DFA",[1,0,0,0,0,0,0,0]],
+   ["Polymer AM: FDM / resin",[1,1,0,0,0,0,1,0]],
+   ["Metal AM: DMLS build setup",[0,0,1,0,0,0,0,0]],
+   ["Prototyping & hands-on assembly",[1,1,0,1,0,0,1,0]],
+   ["Mechanical testing (UTM)",[0,0,1,0,0,0,0,1]],
+   ["Materials characterization (SEM, XRD, hardness)",[0,0,0,0,0,0,0,1]],
+   ["Embedded control (STM32 / Arduino)",[0,1,0,0,0,0,1,0]],
+   ["Motors & drivers (stepper, servo, TMC2209)",[0,1,0,0,0,0,1,0]],
+   ["Sensors & closed-loop control",[0,1,0,0,0,0,0,0]],
+   ["Power electronics & wiring",[0,1,0,0,0,0,0,0]],
+   ["Hydraulics & PLC control",[0,0,0,1,0,0,0,0]],
+   ["Injection molding & tooling",[0,0,0,0,1,0,0,0]],
+   ["CNC programming (G-code) & metrology",[0,0,0,0,0,1,0,0]],
+   ["Calibration & root-cause analysis",[1,1,1,0,0,0,0,0]],
+   ["Lean / 5S / Kaizen",[1,0,0,0,0,0,0,0]],
+   ["Numerical modeling (Python, MD)",[0,0,0,0,0,0,1,1]],
+   ["Technical training & SOPs",[1,0,0,0,0,0,0,1]]
+  ];
+  const esc=s=>s.replace(/&/g,'&amp;');
+  let h='<thead><tr><th scope="col">Capability</th>'+cols.map(c=>`<th scope="col"${c==='NYU'?' class="nyu"':''}>${c}</th>`).join('')+'</tr></thead><tbody>';
+  rows.forEach(r=>{h+=`<tr><td>${esc(r[0])}</td>`+r[1].map((v,i)=>`<td>${v?`<span class="dot" role="img" aria-label="${cols[i]}"></span>`:'<span class="no-dot" aria-hidden="true"></span>'}</td>`).join('')+'</tr>'});
+  document.getElementById('matrix').innerHTML=h+'</tbody>';
+
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+    const el=document.getElementById(b.dataset.copy);const txt=el.textContent.trim();
+    const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1600)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';setTimeout(()=>b.textContent='Copy',1600)};
+    try{navigator.clipboard.writeText(txt).then(done,sel)}catch(e){sel()}
+  }));
+
+  const lb=document.getElementById('lb'),li=document.getElementById('lbimg'),lc=document.getElementById('lbcap');
+  document.querySelectorAll('figure.f .ph').forEach(btn=>{
+    btn.setAttribute('type','button');
+    const img=btn.querySelector('img');btn.setAttribute('aria-label','Enlarge: '+(img.alt||'image'));
+    btn.addEventListener('click',()=>{
+      li.src=img.src;li.alt=img.alt;
+      const cap=btn.closest('figure').querySelector('figcaption');lc.textContent=cap?cap.textContent:'';
+      try{lb.showModal()}catch(e){lb.setAttribute('open','')}
+    });
+  });
+  document.getElementById('lbx').addEventListener('click',()=>lb.close());
+  lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+})();
+</script>
+
+</body>
+</html>
